@@ -2,10 +2,16 @@
 
 buildscript {
     repositories {
-        jcenter()
+        maven {
+            url "http://maven.bbkedu.com:8081/nexus/content/groups/android_public/"
+        }
+        maven {
+            url "https://dl.google.com/dl/android/maven2/"
+        }
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.android.tools.build:gradle:3.3.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -15,7 +21,12 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        maven {
+            url "http://maven.bbkedu.com:8081/nexus/content/groups/android_public/"
+        }
+        maven {
+            url "https://dl.google.com/dl/android/maven2/"
+        }
         maven { url "https://jitpack.io" }
     }
 }

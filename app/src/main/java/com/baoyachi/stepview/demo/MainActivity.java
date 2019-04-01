@@ -8,21 +8,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.baoyachi.stepview.demo.fragment.DrawCanvasFragment;
-import com.baoyachi.stepview.demo.fragment.HorizontalStepviewFragment;
-import com.baoyachi.stepview.demo.fragment.VerticalStepViewReverseFragment;
+import com.baoyachi.stepview.demo.fragment.HorizontalStepViewFragment;
 import com.baoyachi.stepview.demo.fragment.VerticalStepViewFrowardFragment;
+import com.baoyachi.stepview.demo.fragment.VerticalStepViewReverseFragment;
 
 /**
  * 日期：16/6/22 16:01
  * <p/>
  * 描述：
  */
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -31,25 +29,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main_activity, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         VerticalStepViewReverseFragment mVerticalStepViewFragment;
         DrawCanvasFragment mDrawCanvasFragment;
-        HorizontalStepviewFragment mHorizontalStepviewFragment;
+        HorizontalStepViewFragment mHorizontalStepviewFragment;
         VerticalStepViewFrowardFragment mVerticalStepViewReverseFragment;
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         int itemId = item.getItemId();
-        switch(itemId)
-        {
+        switch (itemId) {
             case R.id.action_horizontal_stepview:
-                mHorizontalStepviewFragment = new HorizontalStepviewFragment();
+                mHorizontalStepviewFragment = new HorizontalStepViewFragment();
                 fragmentTransaction.replace(R.id.container, mHorizontalStepviewFragment).commit();
                 break;
 
@@ -68,10 +63,10 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.action_test_horizontal_stepview:
-                startActivity(new Intent(this,TestHorizontalStepViewActivity.class));
+                startActivity(new Intent(this, TestHorizontalStepViewActivity.class));
                 break;
-
-
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -18,53 +18,58 @@ import com.baoyachi.stepview.bean.StepBean;
 import java.util.List;
 
 /**
- * 日期：16/6/22 15:47
- * <p/>
- * 描述：StepView
+ * 横向的StepView
  */
-public class HorizontalStepView extends LinearLayout implements HorizontalStepsViewIndicator.OnDrawIndicatorListener
-{
+public class HorizontalStepView extends LinearLayout implements HorizontalStepsViewIndicator.OnDrawIndicatorListener {
     private RelativeLayout mTextContainer;
     private HorizontalStepsViewIndicator mStepsViewIndicator;
+    /**
+     * StepBean集合
+     */
     private List<StepBean> mStepBeanList;
+
     private int mComplectingPosition;
-    private int mUnComplectedTextColor = ContextCompat.getColor(getContext(), R.color.uncompleted_text_color);//定义默认未完成文字的颜色;
-    private int mComplectedTextColor = ContextCompat.getColor(getContext(), android.R.color.white);//定义默认完成文字的颜色;
-    private int mTextSize = 14;//default textSize
+    /**
+     * 定义默认未完成文字的颜色
+     */
+    private int mUnComplectedTextColor = ContextCompat.getColor(getContext(), R.color.uncompleted_text_color);
+    /**
+     * 定义默认完成文字的颜色
+     */
+    private int mComplectedTextColor = ContextCompat.getColor(getContext(), android.R.color.white);
+    /**
+     * 定义默认文字大小
+     */
+    private int mTextSize = 14;
+
     private TextView mTextView;
 
-    public HorizontalStepView(Context context)
-    {
+    public HorizontalStepView(Context context) {
         this(context, null);
     }
 
-    public HorizontalStepView(Context context, AttributeSet attrs)
-    {
+    public HorizontalStepView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public HorizontalStepView(Context context, AttributeSet attrs, int defStyleAttr)
-    {
+    public HorizontalStepView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
-    private void init()
-    {
+    private void init() {
         View rootView = LayoutInflater.from(getContext()).inflate(R.layout.widget_horizontal_stepsview, this);
-        mStepsViewIndicator = (HorizontalStepsViewIndicator) rootView.findViewById(R.id.steps_indicator);
+        mStepsViewIndicator = rootView.findViewById(R.id.steps_indicator);
         mStepsViewIndicator.setOnDrawListener(this);
-        mTextContainer = (RelativeLayout) rootView.findViewById(R.id.rl_text_container);
+        mTextContainer = rootView.findViewById(R.id.rl_text_container);
     }
 
     /**
      * 设置显示的文字
      *
-     * @param stepsBeanList
-     * @return
+     * @param stepsBeanList StepBean集合
      */
-    public HorizontalStepView setStepViewTexts(List<StepBean> stepsBeanList)
-    {
+    public HorizontalStepView setStepViewTexts(List<StepBean> stepsBeanList) {
         mStepBeanList = stepsBeanList;
         mStepsViewIndicator.setStepNum(mStepBeanList);
         return this;
@@ -74,11 +79,9 @@ public class HorizontalStepView extends LinearLayout implements HorizontalStepsV
     /**
      * 设置未完成文字的颜色
      *
-     * @param unComplectedTextColor
-     * @return
+     * @param unComplectedTextColor 未完成文字的颜色
      */
-    public HorizontalStepView setStepViewUnComplectedTextColor(int unComplectedTextColor)
-    {
+    public HorizontalStepView setStepViewUnComplectedTextColor(int unComplectedTextColor) {
         mUnComplectedTextColor = unComplectedTextColor;
         return this;
     }
@@ -86,11 +89,10 @@ public class HorizontalStepView extends LinearLayout implements HorizontalStepsV
     /**
      * 设置完成文字的颜色
      *
-     * @param complectedTextColor
+     * @param complectedTextColor 完成文字的颜色
      * @return
      */
-    public HorizontalStepView setStepViewComplectedTextColor(int complectedTextColor)
-    {
+    public HorizontalStepView setStepViewComplectedTextColor(int complectedTextColor) {
         this.mComplectedTextColor = complectedTextColor;
         return this;
     }
@@ -98,11 +100,9 @@ public class HorizontalStepView extends LinearLayout implements HorizontalStepsV
     /**
      * 设置StepsViewIndicator未完成线的颜色
      *
-     * @param unCompletedLineColor
-     * @return
+     * @param unCompletedLineColor StepsViewIndicator未完成线的颜色
      */
-    public HorizontalStepView setStepsViewIndicatorUnCompletedLineColor(int unCompletedLineColor)
-    {
+    public HorizontalStepView setStepsViewIndicatorUnCompletedLineColor(int unCompletedLineColor) {
         mStepsViewIndicator.setUnCompletedLineColor(unCompletedLineColor);
         return this;
     }
@@ -110,11 +110,9 @@ public class HorizontalStepView extends LinearLayout implements HorizontalStepsV
     /**
      * 设置StepsViewIndicator完成线的颜色
      *
-     * @param completedLineColor
-     * @return
+     * @param completedLineColor tepsViewIndicator完成线的颜色
      */
-    public HorizontalStepView setStepsViewIndicatorCompletedLineColor(int completedLineColor)
-    {
+    public HorizontalStepView setStepsViewIndicatorCompletedLineColor(int completedLineColor) {
         mStepsViewIndicator.setCompletedLineColor(completedLineColor);
         return this;
     }
@@ -122,10 +120,9 @@ public class HorizontalStepView extends LinearLayout implements HorizontalStepsV
     /**
      * 设置StepsViewIndicator默认图片
      *
-     * @param defaultIcon
+     * @param defaultIcon StepsViewIndicator默认图片
      */
-    public HorizontalStepView setStepsViewIndicatorDefaultIcon(Drawable defaultIcon)
-    {
+    public HorizontalStepView setStepsViewIndicatorDefaultIcon(Drawable defaultIcon) {
         mStepsViewIndicator.setDefaultIcon(defaultIcon);
         return this;
     }
@@ -133,10 +130,9 @@ public class HorizontalStepView extends LinearLayout implements HorizontalStepsV
     /**
      * 设置StepsViewIndicator已完成图片
      *
-     * @param completeIcon
+     * @param completeIcon StepsViewIndicator已完成图片
      */
-    public HorizontalStepView setStepsViewIndicatorCompleteIcon(Drawable completeIcon)
-    {
+    public HorizontalStepView setStepsViewIndicatorCompleteIcon(Drawable completeIcon) {
         mStepsViewIndicator.setCompleteIcon(completeIcon);
         return this;
     }
@@ -146,57 +142,54 @@ public class HorizontalStepView extends LinearLayout implements HorizontalStepsV
      *
      * @param attentionIcon
      */
-    public HorizontalStepView setStepsViewIndicatorAttentionIcon(Drawable attentionIcon)
-    {
+    public HorizontalStepView setStepsViewIndicatorAttentionIcon(Drawable attentionIcon) {
         mStepsViewIndicator.setAttentionIcon(attentionIcon);
         return this;
     }
 
     /**
-     * set textSize
+     * 设置文字大小
      *
-     * @param textSize
-     * @return
+     * @param textSize 文字大小
      */
-    public HorizontalStepView setTextSize(int textSize)
-    {
-        if(textSize > 0)
-        {
+    public HorizontalStepView setTextSize(int textSize) {
+        if (textSize > 0) {
             mTextSize = textSize;
         }
         return this;
     }
 
     @Override
-    public void ondrawIndicator()
-    {
-        if(mTextContainer != null)
-        {
+    public void onDrawIndicator() {
+        if (mTextContainer != null) {
+            //将所有的文本清除掉
             mTextContainer.removeAllViews();
+            //得到所有圆的圆心点位置的集合
             List<Float> complectedXPosition = mStepsViewIndicator.getCircleCenterPointPositionList();
-            if(mStepBeanList != null && complectedXPosition != null && complectedXPosition.size() > 0)
-            {
-                for(int i = 0; i < mStepBeanList.size(); i++)
-                {
+
+            if (mStepBeanList != null && complectedXPosition != null && complectedXPosition.size() > 0) {
+                //遍历所有的step节点，然后绘制每个节点的文本
+                for (int i = 0; i < mStepBeanList.size(); i++) {
                     mTextView = new TextView(getContext());
                     mTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTextSize);
                     mTextView.setText(mStepBeanList.get(i).getName());
+
+                    //测试下TextView
                     int spec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
                     mTextView.measure(spec, spec);
-                    // getMeasuredWidth
+
+                    // 获取到测量到的width宽度
                     int measuredWidth = mTextView.getMeasuredWidth();
+                    //设置TextView的x坐标
                     mTextView.setX(complectedXPosition.get(i) - measuredWidth / 2);
                     mTextView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-                    if(i <= mComplectingPosition)
-                    {
+                    if (i <= mComplectingPosition) {
                         mTextView.setTypeface(null, Typeface.BOLD);
                         mTextView.setTextColor(mComplectedTextColor);
-                    } else
-                    {
+                    } else {
                         mTextView.setTextColor(mUnComplectedTextColor);
                     }
-
                     mTextContainer.addView(mTextView);
                 }
             }
